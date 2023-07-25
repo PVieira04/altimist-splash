@@ -1,0 +1,29 @@
+{
+  "canisters": {
+    "altimist1_backend": {
+      "main": "src/altimist1_backend/main.mo",
+      "type": "motoko"
+    },
+    "altimist1_frontend": {
+      "dependencies": [
+        "altimist1_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/altimist1_frontend/src/index.html"
+      },
+      "source": [
+        "src/altimist1_frontend/assets",
+        "dist/altimist1_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
