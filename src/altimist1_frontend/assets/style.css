@@ -22,50 +22,134 @@ body {
     align-items: center;
     text-align: center;
     min-height: 100vh;
-    margin: 0 5px;
 }
 
 main {
     flex: 1;
+    width: 100%;
+    margin: 0 5px 20px;
 }
 
 /* Navigation Bar */
 
+/* Style your header, logo, and navigation links here */
+
 header {
-    width: 98vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: fixed;
+    top: -70px;
+    left: 0;
+    width: 100%;
+    background: #f1f1f1;
+    color: #f1f1f1;
+    transition: 0.3s; /* Add smooth transition for hiding header */
+    z-index: 2;
 }
 
-.nav-row {
-    width: 90%;
+.nav-con {
+    padding: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
-}
-
-.nav-row h2 {
-    font-size: 2.5em;
-    margin: 5px;
-}
-
-.nav-row nav {
-    margin: 5px;
-}
-
-.nav-row nav a {
-    margin: 5px;
-    font-size: 1.6em;
-}
-
-.nav-row a {
-    text-decoration: none;
 }
 
 hr {
-    width: 100%;
+    margin: auto;
+    width: calc(100vw - 5px);
 }
+
+/* Style the logo */
+
+.logo {
+    margin-top: 4px;
+
+}
+
+.logo a {
+    background-color: #f1f1f1;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.mobile-nav-view {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Style the navigation links */
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex; /* Show the navigation links when the "active" class is applied */
+    flex-direction: row; /* Stack the links vertically */
+}
+
+.nav-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-size: 1.5em;
+}
+
+/* Style the hamburger menu */
+.hamburger-menu {
+    display: none;
+    float: right;
+    cursor: pointer;
+    border: 2px solid #000;
+    border-radius: 5px;
+    padding: 5px;
+    height: 40px;
+    width: 40px;
+}
+
+.bar {
+    width: 80%;
+    margin: auto;
+    height: 3px;
+    background: #000;
+    border-radius: 5px;
+}
+
+.nav-links.active li {
+    margin: 10px;
+}
+
+/* Add transitions for smooth animation (optional) */
+.nav-links, .nav-links.active {
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Style for hiding the header when not hovering */
+.nav-hide {
+    top: -70px;
+}
+
+.nav-show {
+    top: 0px;
+}
+
+.hover-trigger-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Adjust the width to match the area you want to trigger */
+    height: 60px; /* Adjust the height as needed */
+    z-index: 1; /* Ensure it's above other content */
+    background: transparent; /* Make it invisible */
+}
+
 
 /* Background Image */
 
@@ -77,6 +161,7 @@ hr {
 
 #home-quote h1 {
     margin-top: 10px;
+    margin-right: 12px;
     font-size: 3em;
     font-style: italic;
 }
@@ -121,11 +206,10 @@ hr {
 
 .home-call-to-action form input {
     height: 50px;
-    min-width: 200px;
-    max-width: 500px;
+    width: 450px;
     font-size: 1em;
     text-align: center;
-    margin: 10px 0;
+    margin: 10px;
 }
 
 #hidden-submit {
@@ -157,7 +241,7 @@ hr {
 }
 
 #google img {
-    height: 68px;
+    height: 45px;
 }
 
 /* Styling Footer */
@@ -171,14 +255,13 @@ footer {
 }
 
 .socials {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    margin: 10px 0 30px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
 }
 
 .social {
+    text-align: center;
     margin: 0 20px;
 }
 
@@ -201,7 +284,7 @@ footer p {
 
 /* Media query for screens smaller than 500px */
 @media screen and (max-width: 500px) {
-    /*nav {
+    nav {
         display: none;
         flex-direction: column;
         align-items: center;
@@ -216,9 +299,39 @@ footer p {
         display: flex;
     }
 
+    nav.active {
+        display: flex;
+    }
+
     nav a {
         color: white;
         text-decoration: none;
         padding: 10px;
-    }*/
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .hamburger-menu {
+        display: flex; /* Show hamburger menu */
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .nav-con {
+        flex-direction: column;
+    }
+
+    #home-quote h1 {
+        font-size: 2.8em;
+    }
+
+    .home-call-to-action form input {
+        max-width: 90vw;
+    }
+
+    .socials {
+        gap: 3px;
+    }
 }
