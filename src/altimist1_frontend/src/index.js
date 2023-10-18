@@ -31,10 +31,12 @@ document.querySelector("#emailForm").addEventListener("submit", async function(e
 })
 
 // Begin JS logic for disappearing Header.
+const nav = document.querySelector("nav");
 
 const hideNavBar = () => {
 	header.classList.remove("nav-show");
 	header.classList.add("nav-hide");
+	nav.classList.remove("active");
 }
 
 const showNavBar = () => {
@@ -54,7 +56,6 @@ let mouseEnterMain = function (event) {
 	main.removeEventListener("mouseenter", mouseEnterMain);
 	header.removeEventListener("mouseleave", mouseLeaveHeader);
 	console.log('cursor enters main area');
-	// Add your code to hide the header after a delay
 	hideNavTimer = setTimeout(function () { hideNavBar() }, timeoutTime);
 };
 
@@ -68,8 +69,6 @@ let mouseLeaveHeader = function (event) {
 hoverTriggerArea.addEventListener("mouseenter", function () {
 	console.log('cursor has entered the trigger area');
     showNavBar();
-
-    // Add the mouseover event listener
     main.addEventListener("mouseenter", mouseEnterMain);
 	header.addEventListener("mouseleave", mouseLeaveHeader);
 });
@@ -87,13 +86,30 @@ document.addEventListener("DOMContentLoaded", function () {
     // Select the hamburger menu and navigation links
     const hamburgerMenu = document.querySelector(".hamburger-menu");
     const nav = document.querySelector("nav");
+	const navLinks = document.querySelector(".nav-links");
 
     // Function to toggle the 'active' class on the navigation links
-    const toggleNav = () => {
-        nav.classList.toggle('active');
+    const toggleNav = (event) => {
+        // Prevent the default click behavior
+        event.preventDefault();
+
+        // Toggle the 'active' class on navLinks
+        console.log("before: " + nav.classList.contains("active"))
+        nav.classList.toggle("active");
+		if (nav.classList.contains("active")) {
+            navLinks.style.transform = "translateY(0)";
+        } else {
+            navLinks.style.transform = "translateY(-100%)"; // Slide back up
+        }
+		console.log("after: " + nav.classList.contains("active"))
     };
 
     // Add a click event listener to the hamburger menu
     hamburgerMenu.addEventListener("click", toggleNav);
+
+    // Prevent event propagation on the navLinks element to avoid unintended toggles
+    nav.addEventListener("click", (event) => {
+        event.stopPropagation();
+    });
 });
 

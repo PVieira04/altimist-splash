@@ -37,7 +37,6 @@ main {
 header {
     position: fixed;
     top: -70px;
-    left: 0;
     width: 100%;
     background: #f1f1f1;
     color: #f1f1f1;
@@ -84,6 +83,7 @@ hr {
 /* Style the navigation links */
 
 .nav-links {
+    width: 100%;
     list-style: none;
     padding: 0;
     display: flex; /* Show the navigation links when the "active" class is applied */
@@ -99,6 +99,10 @@ hr {
     color: #000;
     text-decoration: none;
     font-size: 1.5em;
+}
+
+.separate-links {
+    display: none;
 }
 
 /* Style the hamburger menu */
@@ -121,12 +125,12 @@ hr {
     border-radius: 5px;
 }
 
-.nav-links.active li {
+nav.active ul li {
     margin: 10px;
 }
 
 /* Add transitions for smooth animation (optional) */
-.nav-links, .nav-links.active {
+nav, nav.active {
     transition: all 0.3s ease-in-out;
 }
 
@@ -295,11 +299,7 @@ footer p {
         background-color: #333;
     }
 
-    nav.active {
-        display: flex;
-    }
-
-    nav.active {
+    .active {
         display: flex;
     }
 
@@ -311,6 +311,10 @@ footer p {
 
     .nav-links {
         flex-direction: column;
+    }
+
+    .separate-links {
+        display: block;
     }
 
     .hamburger-menu {
